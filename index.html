@@ -6,80 +6,17 @@
     <title>Para Astrid ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fff0f3;
-            font-family: 'Quicksand', sans-serif;
-            overflow: hidden;
-        }
-
-        /* Pantalla de inicio para desbloquear audio */
-        #overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #ff4081;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            color: white;
-            transition: opacity 0.5s ease;
-        }
-
-        .btn-inicio {
-            padding: 20px 40px;
-            font-size: 1.5rem;
-            background: white;
-            color: #ff4081;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            margin-top: 20px;
-        }
-
-        .container {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(255, 75, 110, 0.2);
-            text-align: center;
-            max-width: 85%;
-            z-index: 10;
-        }
-
+        body { margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #fff0f3; font-family: 'Quicksand', sans-serif; overflow: hidden; }
+        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ff4081; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2000; color: white; transition: opacity 0.5s ease; }
+        .btn-inicio { padding: 20px 40px; font-size: 1.5rem; background: white; color: #ff4081; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-top: 20px; }
+        .container { background: white; padding: 2.5rem; border-radius: 30px; box-shadow: 0 15px 35px rgba(255, 75, 110, 0.2); text-align: center; max-width: 85%; z-index: 10; }
         h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; color: #c2185b; margin: 0; }
         .pregunta { font-size: 1.4rem; color: #ff4081; margin: 1.5rem 0; font-weight: bold; }
-
-        .buttons { 
-            display: flex; 
-            gap: 20px; 
-            justify-content: center; 
-            min-height: 200px; 
-            align-items: center;
-            position: relative;
-        }
-        
-        #btn-si {
-            padding: 15px 35px; background: #ff4081; color: white; border: none;
-            border-radius: 50px; font-weight: bold; cursor: pointer; 
-            z-index: 1500; transition: transform 0.2s ease;
-        }
-
-        #btn-no {
-            padding: 15px 35px; background: #9e9e9e; color: white; border: none;
-            border-radius: 50px; font-weight: bold; cursor: pointer; 
-            position: relative; z-index: 1400;
-        }
-
+        .buttons { display: flex; gap: 20px; justify-content: center; min-height: 200px; align-items: center; position: relative; }
+        #btn-si { padding: 15px 35px; background: #ff4081; color: white; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 1500; transition: transform 0.2s ease; }
+        #btn-no { padding: 15px 35px; background: #9e9e9e; color: white; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; position: relative; z-index: 1400; }
         #mensaje-final { display: none; text-align: center; z-index: 10; }
-        .gif-amor { width: 250px; border-radius: 20px; margin-bottom: 10px; }
+        .gif-amor { width: 250px; border-radius: 20px; margin-bottom: 10px; border: 3px solid #ff4081; }
     </style>
 </head>
 <body>
@@ -91,7 +28,7 @@
     </div>
 
     <audio id="miMusica" loop>
-        <source src="https://files.catbox.moe/k28b93.mp3" type="audio/mpeg">
+        <source src="fiamore.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container" id="main-card">
@@ -104,7 +41,7 @@
     </div>
 
     <div id="mensaje-final">
-        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXp2Znd4bmh5eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/v8Y8Hog49hS7t61XyI/giphy.gif" class="gif-amor">
+        <img src="amor.gif" class="gif-amor" alt="Regalo para Astrid">
         <h2 style="font-family: 'Dancing Script'; font-size: 3.5rem; color: #d81b60; margin: 0;">¡Te amo mucho, Astrid! ❤️</h2>
         <p style="font-size: 1.2rem; color: #c2185b;">¡Sabía que dirías que sí! 🌹✨</p>
     </div>
@@ -114,57 +51,36 @@
         const musica = document.getElementById("miMusica");
         let escalaSi = 1;
 
-        // Función para quitar la pantalla de inicio y sonar la música
         function comenzar() {
             document.getElementById("overlay").style.opacity = "0";
-            setTimeout(() => {
-                document.getElementById("overlay").style.display = "none";
-            }, 500);
-            
-            // Intentar reproducir música
-            musica.play().catch(e => console.log("Error de reproducción:", e));
+            setTimeout(() => { document.getElementById("overlay").style.display = "none"; }, 500);
+            musica.play().catch(e => console.log("Error al reproducir audio local:", e));
         }
 
-        // Función para que el botón NO huya y el SI crezca
         function moverNo() {
             const btnNo = document.getElementById('btn-no');
             const btnSi = document.getElementById('btn-si');
-            
-            // Crecer botón SI
-            escalaSi += 0.4;
+            escalaSi += 0.5;
             btnSi.style.transform = `scale(${escalaSi})`;
-            
-            // Mover botón NO
             const x = Math.random() * (window.innerWidth - 150);
             const y = Math.random() * (window.innerHeight - 100);
-            
             btnNo.style.position = 'fixed';
             btnNo.style.left = x + 'px';
             btnNo.style.top = y + 'px';
         }
 
-        // Función cuando acepta
         function aceptar() {
             document.getElementById('main-card').style.display = 'none';
             document.getElementById('mensaje-final').style.display = 'block';
-            
-            // Lanzar confeti infinito por 10 segundos
-            var duration = 10 * 1000;
+            var duration = 15 * 1000;
             var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-            function randomInRange(min, max) {
-              return Math.random() * (max - min) + min;
-            }
-
-            var interval = setInterval(function() {
-              var timeLeft = animationEnd - Date.now();
-              if (timeLeft <= 0) return clearInterval(interval);
-
-              var particleCount = 50 * (timeLeft / duration);
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
+            (function frame() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return;
+                confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff0000', '#ff85a2'] });
+                confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff0000', '#ff85a2'] });
+                requestAnimationFrame(frame);
+            }());
         }
     </script>
 </body>
